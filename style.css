@@ -12,9 +12,9 @@ body, html {
   border-radius: 5px;
   transition: all .1s ease-in-out;
 }
-.active:hover{
+/* .active:hover{
   transform: scale(1.1);
-}
+} */
 .RGB {
   
   width: fit-content; 
@@ -27,5 +27,5 @@ body, html {
 
 }
 main{
-  
+
 }
