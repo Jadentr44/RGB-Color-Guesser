@@ -1,28 +1,43 @@
-body, html {
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
+body,
+html {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  color: #333;
+  background-image: linear-gradient(to top left, #50b9cc 0%, #bf2e94 100%);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.choices button{
+.choices button {
   width: 6rem;
   height: 6rem;
   margin: 0 2rem;
-  border: solid 1px black;
+  /* border: solid 1px #bf2e94; */
   border-radius: 5px;
-  transition: all .1s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
-.active:hover{
+.active:hover {
   transform: scale(1.1);
 }
 .RGB {
-  
-  width: fit-content; 
-  font-family: Impact;
+  width: fit-content;
+  font-family: "Nunito", sans-serif;
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/0/0e/Red-green-blue_flag.svg");
   background-size: 100% 100%;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
- 
-
+}
+.text-center {
+  background-color: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(200px);
+  filter: blur();
+  padding: 20px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
 }
