@@ -18,7 +18,7 @@ function startGame() {
 function setNewValues() {
   const colorArr = [];
   const counterEl = document.querySelector("#counter")
-  if(counterEl.innerText == "5"){
+  if(counterEl.innerText == "10"){
     endGame()
     return
   }
@@ -31,8 +31,7 @@ function setNewValues() {
     );
   }
 
-  document.querySelector("#colorValue").innerText =colorArr[0].slice(3);
-    // colorArr[Math.floor(Math.random() * 4)].slice(3);
+  document.querySelector("#colorValue").innerText =colorArr[Math.floor(Math.random() * 4)].slice(3);
     
   colorArr.forEach((e, i) => {
     document.getElementById(`btn${i + 1}`).style.backgroundColor = e;
