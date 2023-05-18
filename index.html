@@ -9,6 +9,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
+<!-- <button id="test">test</button> -->
 <body style="height: 100svh;" class="max-h-screen  flex flex-col bg-gray-400">
   
     <nav class="bg-white">
@@ -18,7 +19,7 @@
         </div>
         <div class="flex flex-col items-end sm:flex-row justify-end space-x-4 text-lg">
           <h2><span id="counter">0</span>/10</h2>
-          <h2>score:<span id="score">0</span></h2>
+          <h2>Score:<span id="score">0</span></h2>
         </div>
       </div>
     </nav>
@@ -41,12 +42,18 @@
       </div>
       <div id="endScreen" class="absolute invisible  left-0 right-0 bottom-0 top-0 flex   flex-col justify-center ">
         <h3 class="text-4xl font-semibold">Game over!</h3>
-        <h4>score:<span id='scoreResult'></span></h4>
+        <h4>Score:<span id='scoreResult'></span></h4>
+        <h4>HighScore:<span id="highScore">0</span></h4>
+
         <button  class="playBtn border rounded-lg px-2 py-1 text-lg border-black mt-12 w-fit mx-auto hover:bg-gray-200">Play Again?</button>
       </div>
     </div>
     
   </main>
+  <footer class="absolute border invisible rounded-t-lg py-2 px-4 bg-white bottom-0 left-0 right-0 flex max-w-2xl mx-auto justify-between items-center flex-col sm:flex-row w-fit sm:w-full " id="cookieBanner">
+    <p class="text-center">This website uses cookies to track game data.</p>
+    <button id="cookieAccept" class="border border-black hover:bg-gray-200 rounded-lg px-2 py-1">Accept Cookies</button>
+  </footer>
   <script src="game.js"></script>
 
 </body>

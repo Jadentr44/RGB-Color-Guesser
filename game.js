@@ -18,7 +18,7 @@ function startGame() {
 function setNewValues() {
   const colorArr = [];
   const counterEl = document.querySelector("#counter")
-  if(counterEl.innerText == "10"){
+  if(counterEl.innerText == "2"){
     endGame()
     return
   }
@@ -67,6 +67,12 @@ function checkChoice(e) {
 }
 function endGame (){
   document.querySelector('#scoreResult').innerText = document.querySelector('#score').innerText
+  // console.log(document.cookie)
+  if(!document.cookie || document.cookie < document.querySelector('#score').innerText){
+    console.log("changing cookie")
+    document.cookie = document.querySelector('#score').innerText
+  }
+  document.querySelector('#highScore').innerText = document.cookie
 
   document.querySelector("#game").classList.add("invisible")
   document.querySelector("#endScreen").classList.remove('invisible')
@@ -80,3 +86,11 @@ function flashBG(color){
 
 }, 300);
 }
+
+if(!document.cookie){
+  document.querySelector("#cookieBanner").classList.remove("invisible")
+}
+document.querySelector("#cookieAccept").addEventListener("click",function(){
+  document.cookie = 0
+  document.querySelector("#cookieBanner").classList.add("invisible")
+})
