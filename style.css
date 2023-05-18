@@ -27,6 +27,6 @@ body, html {
 
 }
 #gameContainer{
-  -webkit-transition: background-Color 0.2s ease-in-out;
-  transition: background-Color 0.2s ease-in-out;
+  -webkit-transition: background-Color 0.15s ease-in-out;
+  transition: background-Color 0.15s ease-in-out;
 }

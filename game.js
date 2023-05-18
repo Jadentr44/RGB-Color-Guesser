@@ -54,7 +54,7 @@ function checkChoice(e) {
     
 
     setNewValues()
-}, 600);
+}, 400);
   } else {
   flashBG("red")
 
@@ -78,5 +78,5 @@ function flashBG(color){
   setTimeout(function() {
     document.getElementById("gameContainer").style.backgroundColor = "white"
 
-}, 500);
+}, 300);
 }
