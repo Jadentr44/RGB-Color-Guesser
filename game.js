@@ -18,7 +18,7 @@ function startGame() {
 function setNewValues() {
   const colorArr = [];
   const counterEl = document.querySelector("#counter")
-  if(counterEl.innerText == "2"){
+  if(counterEl.innerText == "10"){
     endGame()
     return
   }
