@@ -49,8 +49,15 @@ function checkChoice(e) {
   if(pick == "grey" || pick == "") return
   if (pick == ans) {
     scoreEl.innerText = parseInt(scoreEl.innerText) + 2
+  flashBG("green")
+  setTimeout(function() {
+    
+
     setNewValues()
+}, 600);
   } else {
+  flashBG("red")
+
     scoreEl.innerText --;
     document.getElementById(e.target.id).classList.remove("active")
     document.getElementById(e.target.id).style.backgroundColor = "grey"
@@ -64,4 +71,12 @@ function endGame (){
   document.querySelector("#game").classList.add("invisible")
   document.querySelector("#endScreen").classList.remove('invisible')
   document.querySelector("#endScreen").classList.add('visible')
+}
+function flashBG(color){
+  console.log("flashing")
+  document.getElementById("gameContainer").style.backgroundColor = color
+  setTimeout(function() {
+    document.getElementById("gameContainer").style.backgroundColor = "white"
+
+}, 500);
 }
