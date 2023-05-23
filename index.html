@@ -1,60 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RGB color guesser</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-
-</head>
-<!-- <button id="test">test</button> -->
-<body style="height: 100svh;" class="max-h-screen  flex flex-col bg-gray-400">
-  
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RGB color guesser</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <!-- <button id="test">test</button> -->
+  <body style="height: 100svh" class="max-h-screen flex flex-col bg-gray-400">
     <nav class="bg-white">
-      <div class="flex flex-wrap  justify-between max-w-screen-xl mx-auto items-center py-2 px-2">
+      <div
+        class="flex flex-wrap justify-between max-w-screen-xl mx-auto items-center py-2 px-2"
+      >
         <div>
-          <h1 class="text-2xl whitespace-nowrap	"><span class="text-red-600 font-semibold">R</span><span class="text-green-600 font-semibold">G</span><span class="text-blue-600 font-semibold">B</span> Color Guesser</h1>
+          <h1 class="text-2xl whitespace-nowrap">
+            <span class="text-red-600 font-semibold">R</span
+            ><span class="text-green-600 font-semibold">G</span
+            ><span class="text-blue-600 font-semibold">B</span> Color Guesser
+          </h1>
         </div>
-        <div class="flex flex-col items-end sm:flex-row justify-end space-x-4 text-lg">
-          <h2><span id="counter">0</span>/10</h2>
+        <div
+          class="flex flex-col items-end sm:flex-row justify-end space-x-4 text-lg"
+        >
+          <h2><span id="counter">0</span>/9</h2>
           <h2>Score:<span id="score">0</span></h2>
         </div>
       </div>
     </nav>
-  <main class=" lg:w-[65rem] w-screen  lg:mx-auto px-[5%] text-center h-full  flex ">
-    
-    
-    <div id="gameContainer" class="border relative   h-fit w-fit my-auto mx-auto bg-white rounded-lg">
-      <div id="gameScreen" class="">
-
-        <button id="startButton"  class="playBtn absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border rounded-lg px-4 py-2 text-2xl border-black hover:bg-gray-200">start</button>
-        <div id="game" class="invisible">
-          <h3 class=" text-5xl font-bold mt-8" id="colorValue">0</h3>
-          <div class="choices my-12 ">
-            <button id="btn1"></button>
-            <button id="btn2"></button>
-            <button id="btn3"></button>
-            <button id="btn4"></button>
+    <main
+      class="lg:w-[65rem] w-screen lg:mx-auto px-[5%] text-center h-full flex"
+    >
+      <div
+        id="gameContainer"
+        class="border relative h-fit w-fit my-auto mx-auto bg-white sm:bg-red-200 md:bg-green-200 rounded-lg"
+      >
+        <div id="gameScreen" class="">
+          <button
+            id="startButton"
+            class="playBtn  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border rounded-lg px-4 py-2 text-2xl border-black hover:bg-gray-200"
+          >
+            start
+          </button>
+         
+          <div id="game" class=" invisible px-4">
+            <h3 class="text-5xl font-bold mt-8" id="colorValue">0</h3>
+            <div
+              class="choices w-fit mx-auto  my-12 border border-black  border-4 rounded-lg"
+            >
+              <div id="row1  " class="flex  border-black">
+                <div id="btn1" class="choice"></div>
+                <div id="btn2" class="choice"></div>
+                <div id="btn3" class="choice"></div>
+              </div>
+              <div id="row2" class="flex">
+                
+              </div>
+              <div id="row3" class="flex">
+                
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div id="endScreen" class="absolute invisible  left-0 right-0 bottom-0 top-0 flex   flex-col justify-center ">
-        <h3 class="text-4xl font-semibold">Game over!</h3>
-        <h4>Score:<span id='scoreResult'></span></h4>
-        <h4>HighScore:<span id="highScore">0</span></h4>
+        <div
+          id="endScreen"
+          class="absolute invisible left-0 right-0 bottom-0 top-0 flex flex-col justify-center"
+        >
+          <h3 class="text-4xl font-semibold">Game over!</h3>
+          <h4>Score:<span id="scoreResult"></span></h4>
+          <h4>HighScore:<span id="highScore">0</span></h4>
 
-        <button  class="playBtn border rounded-lg px-2 py-1 text-lg border-black mt-12 w-fit mx-auto hover:bg-gray-200">Play Again?</button>
+          <button
+            class="playBtn border rounded-lg px-2 py-1 text-lg border-black mt-12 w-fit mx-auto hover:bg-gray-200"
+          >
+            Play Again?
+          </button>
+        </div>
       </div>
-    </div>
-    
-  </main>
-  <footer class="absolute border invisible rounded-t-lg py-2 px-4 bg-white bottom-0 left-0 right-0 flex max-w-2xl mx-auto justify-between items-center flex-col sm:flex-row w-fit sm:w-full " id="cookieBanner">
-    <p class="text-center">This website uses cookies to track game data.</p>
-    <button id="cookieAccept" class="border border-black hover:bg-gray-200 rounded-lg px-2 py-1">Accept Cookies</button>
-  </footer>
-  <script src="game.js"></script>
-
-</body>
+    </main>
+    <footer
+      class="absolute border invisible rounded-t-lg py-2 px-4 bg-white bottom-0 left-0 right-0 flex max-w-2xl mx-auto justify-between items-center flex-col sm:flex-row w-fit sm:w-full"
+      id="cookieBanner"
+    >
+      <p class="text-center">This website uses cookies to track game data.</p>
+      <button
+        id="cookieAccept"
+        class="border border-black hover:bg-gray-200 rounded-lg px-2 py-1"
+      >
+        Accept Cookies
+      </button>
+    </footer>
+    <script src="game.js"></script>
+  </body>
 </html>

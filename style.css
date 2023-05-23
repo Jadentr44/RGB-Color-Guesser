@@ -4,17 +4,23 @@ body, html {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.choices button{
+.choices .choice{
   width: 6rem;
   height: 6rem;
-  margin: 0 2rem;
-  border: solid 1px black;
-  border-radius: 5px;
-  transition: all .1s ease-in-out;
+  border-right: solid 2px black;
+ 
+}
+.choices div:last-child{
+  border: 0;
 }
 /* .active:hover{
   transform: scale(1.1);
 } */
+.wrong{
+  background-color: grey;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png');
+  background-size: 100% 100%;
+}
 .RGB {
   
   width: fit-content; 
