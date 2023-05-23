@@ -62,7 +62,6 @@ function setNewValues() {
 
   colorArr.forEach((e, i) => {
     document.getElementById(`btn${i + 1}`).style.backgroundColor = e;
-    document.getElementById(`btn${i + 1}`).style.borderColor = "black";
     document.getElementById(`btn${i + 1}`).classList.remove("wrong");
     document.getElementById(`btn${i + 1}`).classList.add("active");
   });
@@ -89,7 +88,6 @@ function checkChoice(e) {
     document.getElementById(e.target.id).classList.remove("active");
     document.getElementById(e.target.id).classList.add("wrong");
     document.getElementById(e.target.id).style.backgroundColor = "grey";
-    document.getElementById(e.target.id).style.borderColor = "red";
   }
 }
 function endGame() {
