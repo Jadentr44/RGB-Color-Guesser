@@ -35,7 +35,7 @@ function setNewValues() {
   const colorArr = [];
   const counterEl = document.querySelector("#counter");
 
-  if (counterEl.innerText == "5") return endGame();
+  if (counterEl.innerText == "9") return endGame();
 
   counterEl.innerText++;
 
@@ -69,8 +69,8 @@ function setNewValues() {
 
   // picking one of the random colors for the answer
   document.querySelector("#colorValue").innerText =
-    // colorArr[Math.floor(Math.random() * optionsCount)].slice(3);
-    colorArr[0].slice(3);
+    colorArr[Math.floor(Math.random() * optionsCount)].slice(3);
+    // colorArr[0].slice(3);
 }
 
 function checkChoice(e) {
