@@ -1,21 +1,27 @@
 const startBtns = document.querySelectorAll(".playBtn");
-// number of choices
-let choiceNums = 3;
-// each start button will start the game when clicked
+
+let optionsCount = 3;
+
 startBtns.forEach((btn) => {
   btn.addEventListener("click", startGame);
 });
-// whenever an el with 'choices' class is clicked it will 
-//run the funtion to check
+
 document.querySelector(".choices").addEventListener("click", checkChoice);
 
-// function to reset values for a new game
+// function so I dont need as many document.querySelector
+function getEl(query) {
+  return document.querySelector(query);
+}
+
 function startGame() {
-  choiceNums = 3;
+  // reset to default values for a new game
+  optionsCount = 3;
   document.getElementById("row2").innerHTML = ``;
   document.getElementById("row3").innerHTML = ``;
   document.querySelector("#counter").innerText = 0;
   document.querySelector("#score").innerText = 0;
+
+  // showing the game El and hiding end screen, and start button
   document.querySelector("#game").classList.remove("invisible");
   document.querySelector("#startButton").classList.add("invisible");
   document.querySelector("#endScreen").classList.remove("visible");
@@ -23,60 +29,66 @@ function startGame() {
 
   setNewValues();
 }
-// setting new values
+
+// give new bg values to the square
 function setNewValues() {
   const colorArr = [];
   const counterEl = document.querySelector("#counter");
-  if (counterEl.innerText == "4") {
+
+  if (counterEl.innerText == "5") return endGame();
+
+  counterEl.innerText++;
+
+  // once you get to question 5 and 6 add more options
+  if (counterEl.innerText == "5") {
     document.getElementById(
       "row2"
     ).innerHTML = `<div id="btn4" class="choice"></div>
     <div id="btn5" class="choice"></div>
     <div id="btn6" class="choice"></div>`;
-    choiceNums = 6;
+    optionsCount = 6;
   }
-  if (counterEl.innerText == "7") {
+  if (counterEl.innerText == "8") {
     document.getElementById(
       "row3"
     ).innerHTML = `<div id="btn7" class="choice"></div>
     <div id="btn8" class="choice"></div>
     <div id="btn9" class="choice"></div>`;
-    choiceNums = 9;
-  }
-  if (counterEl.innerText == "9") {
-    endGame();
-    return;
-  }
-  counterEl.innerText++;
-  for (let i = 0; i < choiceNums; i++) {
-    colorArr.push(
-      `rgb(${Math.floor(Math.random() * 256)},${Math.floor(
-        Math.random() * 256
-      )},${Math.floor(Math.random() * 256)})`
-    );
+    optionsCount = 9;
   }
 
-  document.querySelector("#colorValue").innerText =
-    colorArr[Math.floor(Math.random() * choiceNums)].slice(3);
-  // document.querySelector("#colorValue").innerText =colorArr[0].slice(3);
-
-  colorArr.forEach((e, i) => {
-    document.getElementById(`btn${i + 1}`).style.backgroundColor = e;
+  // generating a random color for each option
+  for (let i = 0; i < optionsCount; i++) {
+    const randomColor = `rgb(${Math.floor(Math.random() * 256)},${Math.floor(
+      Math.random() * 256
+    )},${Math.floor(Math.random() * 256)})`;
+    colorArr.push(randomColor);
+    document.getElementById(`btn${i + 1}`).style.backgroundColor = randomColor;
     document.getElementById(`btn${i + 1}`).classList.remove("wrong");
-    document.getElementById(`btn${i + 1}`).classList.add("active");
-  });
+  }
+
+  // picking one of the random colors for the answer
+  document.querySelector("#colorValue").innerText =
+    // colorArr[Math.floor(Math.random() * optionsCount)].slice(3);
+    colorArr[0].slice(3);
 }
+
 function checkChoice(e) {
   const scoreEl = document.querySelector("#score");
-  const pick = document
+  const choice = document
     .getElementById(e.target.id)
     .style.backgroundColor.replace(/ /g, "");
   const ans = `rgb${document.getElementById("colorValue").innerText}`;
-  console.log(pick);
-  if (pick == "grey" || pick == "") return;
-  if (pick == ans) {
-    scoreEl.innerText =
-      parseInt(scoreEl.innerText) + choiceNums - choiceNums / 3;
+
+  // if the options is already wrong, it wont
+  //register another click
+  if (choice == "grey" || choice == "") return;
+
+  if (choice == ans) {
+    scoreEl.innerText = parseInt(scoreEl.innerText) + (optionsCount * 2) / 3;
+
+    // flash the bg green to indicate getting the question right
+    // then waiting to change the values
     flashBG("green");
     setTimeout(function () {
       setNewValues();
@@ -85,34 +97,48 @@ function checkChoice(e) {
     flashBG("red");
 
     scoreEl.innerText--;
-    document.getElementById(e.target.id).classList.remove("active");
+
+    //greying the bg and adding an 'X' to the wrong choice
     document.getElementById(e.target.id).classList.add("wrong");
     document.getElementById(e.target.id).style.backgroundColor = "grey";
   }
 }
-function endGame() {
-  document.querySelector("#scoreResult").innerText =
-    document.querySelector("#score").innerText;
-  // console.log(document.cookie)
-  if (
-    !document.cookie ||
-    document.cookie < document.querySelector("#score").innerText
-  ) {
-    console.log("changing cookie");
-    document.cookie = document.querySelector("#score").innerText;
-  }
-  document.querySelector("#highScore").innerText = document.cookie;
 
+// hides the game and shows end screen
+function endGame() {
+  const currentScore = document.querySelector("#score").innerText;
+  document.querySelector("#scoreResult").innerText = currentScore;
+
+  // checking the score cookie and displaying it
+  let highScore = getScoreCookie();
+  console.log(highScore);
+  console.log(currentScore);
+  if (parseInt(highScore) <= parseInt(currentScore) || !highScore) {
+    console.log("changing cookie");
+    document.cookie = `score=${currentScore};max-age=${60 * 60 * 24 * 365}`;
+  }
+  document.querySelector("#highScore").innerText = getScoreCookie();
+  console.log(getScoreCookie());
+
+  // hiding the game and showing end screen
   document.querySelector("#game").classList.add("invisible");
   document.querySelector("#endScreen").classList.remove("invisible");
   document.querySelector("#endScreen").classList.add("visible");
 }
 function flashBG(color) {
-  console.log("flashing");
+  // console.log("flashing");
   document.getElementById("gameContainer").style.backgroundColor = color;
   setTimeout(function () {
     document.getElementById("gameContainer").style.backgroundColor = "white";
   }, 300);
+}
+
+function getScoreCookie() {
+  let result = null;
+  document.cookie.split(";").forEach((e) => {
+    if (e.split("=")[0].trim() == "score") return (result = e.split("=")[1]);
+  });
+  return result;
 }
 
 if (!document.cookie) {

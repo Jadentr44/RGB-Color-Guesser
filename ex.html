@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="test">test</button>
+  <button id="test2">test</button>
+  <div id="ex">abc</div>
+  <script>
+    document.querySelector("#test").addEventListener('click',function (){
+      document.cookie = "score=0;max-age=1800"
+      document.cookie = "other=stuff;max-age=1800"
+    })
+    document.querySelector("#test2").addEventListener('click',function (){
+     
+      // console.log(document.cookie.split(";"))
+    })
+
+    function getEl(query){
+      return document.querySelector(query)
+    }
+    console.log(getEl("#ex"))
+  </script>
+</body>
+</html>
